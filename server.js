@@ -4,14 +4,13 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 dotenv.config();
-app.use(
-	cors({
-		// origin:["https://noobchatfrontend.onrender.com","*"],
-		origin:"*",
-		credentials:true,
-	})
-);
+const corsOptions = {
+  origin: ["http://localhost:3000","https://quotesfrontend.onrender.com","*"], // Allow localhost:3000 and all other origins
+  allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+};
 
+// Apply CORS middleware
+app.use(cors(corsOptions));
 const auth=require("./routes/auth")
 const quoteRoutes=require('./routes/quoteRoutes')
 
