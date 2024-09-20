@@ -16,7 +16,7 @@ exports.register = async (req, res) => {
     const payload = { user: { id: user.id } };
     jwt.sign(payload, jwtSecret, { expiresIn: "1h" }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+      res.status(200).json({ token });
     });
   } catch (error) {
     console.error(err.message);
@@ -35,7 +35,7 @@ exports.login=async (req,res)=>{
         const payload={user:{id:user.id}};
         jwt.sign(payload,jwtSecret,{expiresIn:'1h'},(err,token)=>{
             if(err)throw err;
-            res.json({token})
+            res.status(200).json({token})
         })
     } catch (error) {
         console.log(err.message);

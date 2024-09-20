@@ -10,7 +10,7 @@ exports.addQuote = async (req, res) => {
       userId: req.user.id,
     });
     const quote = await newQuote.save();
-    res.json(quote);
+    res.status(200).json(quote);
   } catch (error) {
     console.error(err.message);
     res.status(500).send("server error");
@@ -20,7 +20,7 @@ exports.addQuote = async (req, res) => {
 exports.getQuotes = async (req, res) => {
   try {
     const quotes = await Quote.find({ userId: req.user.id });
-    res.json(quotes);
+    res.status(200).json(quotes);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -31,7 +31,7 @@ exports.getQuote = async (req, res) => {
   try {
     const quote = await Quote.findById(req.params.id);
     if (!quote) return res.status(404).json({ msg: "Quote not found" });
-    res.json(quote);
+    res.status(200).json(quote);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -49,7 +49,7 @@ exports.getQuote = async (req, res) => {
       { $set: { text, author } },
       { new: true }
     );
-    res.json(quote);
+    res.status(200).json(quote);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
@@ -66,7 +66,7 @@ exports.deleteQuote = async (req, res) => {
     }
 
     await Quote.findByIdAndDelete(req.params.id);
-    res.json({ msg: "Quote removed" });
+    res.status(200).json({ msg: "Quote removed" });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
