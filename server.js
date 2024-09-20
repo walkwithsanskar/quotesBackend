@@ -6,13 +6,7 @@ const app = express();
 dotenv.config();
 
 
-
-
-
-// Apply CORS middleware with appropriate origins
-app.use(cors({
-  origin:"*"
-}));
+app.use(cors());
 
 
 
