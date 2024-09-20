@@ -7,15 +7,12 @@ dotenv.config();
 
 
 
-const corsOptions = {
-  origin: [
-    // Replace with your actual frontend domain(s)
-    "https://quotesfrontend.onrender.com"
-  ]
-};
+
 
 // Apply CORS middleware with appropriate origins
-app.use(cors(corsOptions));
+app.use(cors({
+  origin:"*"
+}));
 
 
 
