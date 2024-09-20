@@ -4,7 +4,13 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 dotenv.config();
-app.use(cors());
+app.use(
+	cors({
+		// origin:["https://noobchatfrontend.onrender.com","*"],
+		origin:"*",
+		credentials:true,
+	})
+);
 
 const auth=require("./routes/auth")
 const quoteRoutes=require('./routes/quoteRoutes')
@@ -22,7 +28,7 @@ app.use('/api/auth',auth);
 app.use('/api/quotes',quoteRoutes);
 
 app.get("/",(req,res)=>{
-  res.send("hello pink pussy");
+  res.send("hello");
 })
 
 const PORT=process.env.PORT||5002;
