@@ -4,13 +4,21 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 dotenv.config();
-const corsOptions = {
-  origin: ["http://localhost:3000","https://quotesfrontend.onrender.com","*"], // Allow localhost:3000 and all other origins
 
+
+
+const corsOptions = {
+  origin: [
+    // Replace with your actual frontend domain(s)
+    "https://quotesfrontend.onrender.com"
+  ]
 };
 
-// Apply CORS middleware
+// Apply CORS middleware with appropriate origins
 app.use(cors(corsOptions));
+
+
+
 const auth=require("./routes/auth")
 const quoteRoutes=require('./routes/quoteRoutes')
 
