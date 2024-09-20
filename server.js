@@ -5,17 +5,20 @@ const cors = require("cors");
 const app = express();
 dotenv.config();
 
-// CORS Configuration (allow all origins for development, or specify origin)
-app.use(cors()); // This MUST come before route definitions
 
-// Parse incoming JSON requests
-app.use(express.json({ extended: false }));
 
-// Routes
-const auth = require("./routes/auth");
-const quoteRoutes = require('./routes/quoteRoutes');
 
-// MongoDB connection
+
+// Apply CORS middleware with appropriate origins
+app.use(cors({
+  origin:"*"
+}));
+
+
+
+const auth=require("./routes/auth")
+const quoteRoutes=require('./routes/quoteRoutes')
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
