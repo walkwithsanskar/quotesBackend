@@ -15,7 +15,7 @@ app.use(cors({
 }));
 
 
-
+app.use(express.json());
 
 const auth=require("./routes/auth")
 const quoteRoutes=require('./routes/quoteRoutes')
